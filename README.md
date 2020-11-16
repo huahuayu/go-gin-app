@@ -1,6 +1,6 @@
 # Go Gin App
 
-This is a production ready go-gin skeleton project, which have below features:
+This is a production ready go-gin scaffold project, which have below features out of box, helps you kick start a new project with minimum effort.
 
 - multi environment config support
 - full featured logging service
@@ -14,8 +14,7 @@ This is a production ready go-gin skeleton project, which have below features:
 - a dockerfile for deploy
 - custom middleware example
 - distributed lock implementation
-- record soft delete feature 
-- 
+- record soft delete feature
 
 ## Project Structure
 
@@ -68,15 +67,13 @@ log:
 
 ## Quick Start
 
-- Install [Go](https://golang.org/dl/) (go 1.15.4 tested)
-
-In order for Go applications to run anywhere including your $GOPATH/src
+Install [Go](https://golang.org/dl/) and enable `GO111MODULE`
 
 ```bash
 export GO111MODULE=on
 ```
 
-Fetch and install dependencies listed in go.mod:
+Fetch and install dependencies listed in go.mod
 
 ```bash
 go build ./...
@@ -97,18 +94,7 @@ docker run -d --restart always --name redis -p 6379:6379 redis --requirepass "pa
 Create test database & table
 
 ```
-CREATE DATABASE TEST;
-USE TEST;
-CREATE TABLE `t_user` (
-  `id` varchar(32) NOT NULL,
-  `email` varchar(50) DEFAULT NULL,
-  `username` varchar(32) DEFAULT NULL,
-  `pass` varchar(100) DEFAULT NULL,
-  `create_at` datetime DEFAULT NULL,
-  `update_at` datetime DEFAULT NULL,
-  `delete_at` datetime DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=UTF8MB4;
+mysql -uroot -p -h127.0.0.1 < doc/db/db.sql
 ```
 
 To run your application locally:
@@ -131,6 +117,4 @@ go run main.go --config=/path/to/config.yml
 
 ## License
 
-This sample application is licensed under the Apache License, Version 2. Separate third-party code objects invoked within this code pattern are licensed by their respective providers pursuant to their own separate licenses. Contributions are subject to the [Developer Certificate of Origin, Version 1.1](https://developercertificate.org/) and the [Apache License, Version 2](https://www.apache.org/licenses/LICENSE-2.0.txt).
-
-[Apache License FAQ](https://www.apache.org/foundation/license-faq.html#WhatDoesItMEAN)
+This sample application is licensed under the Apache License, Version 2.

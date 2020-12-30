@@ -10,5 +10,16 @@ CREATE TABLE `t_user` (
   `create_at` datetime DEFAULT NULL,
   `update_at` datetime DEFAULT NULL,
   `delete_at` datetime DEFAULT NULL,
-  PRIMARY KEY (`id`)
+  PRIMARY KEY (`id`) USING BTREE
 ) ENGINE=InnoDB DEFAULT CHARSET=UTF8MB4;
+
+CREATE TABLE `t_param` (
+  `id` char(32) NOT NULL,
+  `type` char(20) DEFAULT NULL,
+  `code` text,
+  `desc` varchar(200) DEFAULT NULL,
+  `create_at` datetime DEFAULT NULL,
+  `update_at` datetime DEFAULT NULL,
+  `delete_at` datetime DEFAULT NULL,
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;

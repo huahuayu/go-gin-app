@@ -15,6 +15,7 @@ This is a production ready go-gin scaffold project, which have below features ou
 - custom middleware example
 - distributed lock implementation
 - record soft delete feature
+- universal param support
 
 ## Project Structure
 

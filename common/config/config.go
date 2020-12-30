@@ -17,6 +17,7 @@ type Configuration struct {
 		Port        string `yaml:"port"`
 		TimezoneLoc string `yaml:"timezoneLoc"`
 		GinMode     string `yaml:"ginMode"`
+		HtmlPath    string `yaml:"htmlPath"`
 	} `yaml:"server"`
 	Db struct {
 		User       string `yaml:"user"`

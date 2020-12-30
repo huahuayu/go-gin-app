@@ -22,4 +22,24 @@ type (
 	UpdateUsernameReq struct {
 		NewUsername string
 	}
+
+	AddParamReq struct {
+		Type string
+		Code string
+		Desc string
+	}
+
+	GetParamByTypeReq struct {
+		Type string
+	}
+
+	UpdateParamReq struct {
+		Type string
+		Code string
+		Desc string
+	}
+
+	DeleteParamReq struct {
+		Id string
+	}
 )

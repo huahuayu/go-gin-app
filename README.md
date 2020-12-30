@@ -47,6 +47,8 @@ server:
   timezoneLoc: Asia/Shanghai
   # gin mode: debug, release, test
   ginMode: debug
+  # htmlPath: /var/go-gin-app/static
+  htmlPath: ./public
 db:
   user: root
   pass: root

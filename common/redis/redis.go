@@ -1,8 +1,9 @@
 package redis
 
 import (
+	"context"
 	"errors"
-	"github.com/go-redis/redis"
+	"github.com/go-redis/redis/v8"
 	"github.com/huahuayu/go-gin-app/common/config"
 	"time"
 )
@@ -18,14 +19,14 @@ func Init() {
 		DB:       config.App.Redis.Db,
 	})
 
-	_, err := Client.Ping().Result()
+	_, err := Client.Ping(context.Background()).Result()
 	if err != nil {
 		panic(err)
 	}
 }
 
 func ObtainLock(key string, expiration time.Duration) error {
-	val, err := Client.SetNX(key, 1, expiration).Result()
+	val, err := Client.SetNX(context.Background(), key, 1, expiration).Result()
 	if err != nil {
 	}
 	if !val {
@@ -35,5 +36,5 @@ func ObtainLock(key string, expiration time.Duration) error {
 }
 
 func ReleaseLock(key string) {
-	Client.Del(key)
+	Client.Del(context.Background(), key)
 }

@@ -1,6 +1,7 @@
 package session
 
 import (
+	"context"
 	"encoding/json"
 	"fmt"
 	"github.com/huahuayu/go-gin-app/common/redis"
@@ -11,12 +12,12 @@ import (
 func Set(sid string, user *model.TUser) {
 	key := fmt.Sprintf(redis.KEY_USER_SESSION, sid)
 	data, _ := json.Marshal(user)
-	redis.Client.Set(key, data, global.SessionExpiredTime)
+	redis.Client.Set(context.TODO(), key, data, global.SessionExpiredTime)
 }
 
 func Get(sid string) *model.TUser {
 	key := fmt.Sprintf(redis.KEY_USER_SESSION, sid)
-	res := redis.Client.Get(key)
+	res := redis.Client.Get(context.TODO(), key)
 	user := &model.TUser{}
 	bytes, _ := res.Bytes()
 	err := json.Unmarshal(bytes, user)
@@ -28,5 +29,5 @@ func Get(sid string) *model.TUser {
 
 func Del(sid string) {
 	key := fmt.Sprintf(redis.KEY_USER_SESSION, sid)
-	redis.Client.Del(key)
+	redis.Client.Del(context.TODO(), key)
 }

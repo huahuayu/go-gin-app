@@ -14,6 +14,6 @@ func Publish(ctx context.Context, channel string, message interface{}) error {
 	return nil
 }
 
-func Subscribe(ctx context.Context, channels string) *redis.PubSub {
-	return Client.Subscribe(ctx, channels)
+func Subscribe(ctx context.Context, channels ...string) *redis.PubSub {
+	return Client.Subscribe(ctx, channels...)
 }

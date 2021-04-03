@@ -19,14 +19,14 @@ func Init() {
 		DB:       config.App.Redis.Db,
 	})
 
-	_, err := Client.Ping(context.Background()).Result()
+	_, err := Client.Ping(context.TODO()).Result()
 	if err != nil {
 		panic(err)
 	}
 }
 
 func ObtainLock(key string, expiration time.Duration) error {
-	val, err := Client.SetNX(context.Background(), key, 1, expiration).Result()
+	val, err := Client.SetNX(context.TODO(), key, 1, expiration).Result()
 	if err != nil {
 	}
 	if !val {
@@ -36,5 +36,5 @@ func ObtainLock(key string, expiration time.Duration) error {
 }
 
 func ReleaseLock(key string) {
-	Client.Del(context.Background(), key)
+	Client.Del(context.TODO(), key)
 }

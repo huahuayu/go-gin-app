@@ -13,12 +13,10 @@ require (
 	github.com/google/uuid v1.1.2
 	github.com/henrylee2cn/goutil v0.0.0-20200831095421-56f2037199c0 // indirect
 	github.com/jinzhu/copier v0.0.0-20201025035756-632e723a6687
-	github.com/konsorten/go-windows-terminal-sequences v1.0.1 // indirect
 	github.com/mattn/go-isatty v0.0.12 // indirect
 	github.com/nyaruka/phonenumbers v1.0.59 // indirect
 	github.com/sirupsen/logrus v1.8.0
 	github.com/spf13/viper v1.3.2
-	github.com/stretchr/objx v0.1.1 // indirect
 	golang.org/x/crypto v0.0.0-20200622213623-75b288015ac9
 	gopkg.in/go-playground/assert.v1 v1.2.1 // indirect
 	gopkg.in/go-playground/validator.v8 v8.18.2 // indirect

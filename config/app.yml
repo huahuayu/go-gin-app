@@ -24,3 +24,4 @@ log:
   path: /tmp/log
   # 0-PanicLevel 1-FatalLevel 2-ErrorLevel 3-WarnLevel 4-InfoLevel 5-DebugLevel 6-TraceLevel
   level: 5
+  reportCaller: false

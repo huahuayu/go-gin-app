@@ -45,7 +45,7 @@ func initLog() {
 		panic(fmt.Sprintf("open log file err: %s\n", err))
 	}
 	log.SetLevel(config.App.Log.Level)
-	log.SetReportCaller(true)
+	log.SetReportCaller(config.App.Log.ReportCaller)
 	log.SetFormatter(&log.JSONFormatter{})
 	out := io.MultiWriter(os.Stdout, file)
 	log.SetOutput(out)

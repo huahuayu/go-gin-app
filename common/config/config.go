@@ -34,10 +34,14 @@ type Configuration struct {
 		Pass string `yaml:"pass"`
 		Db   int    `yaml:"db"`
 	} `yaml:"redis"`
+	Eth struct {
+		Node       string `yaml:"node"`
+		PrivateKey string `yaml:"privateKey"`
+	} `yaml:"eth"`
 	Log struct {
-		Path  string    `yaml:"path"`
-		Level log.Level `yaml:"level"`
-		ReportCaller bool `yaml:"reportCaller"`
+		Path         string    `yaml:"path"`
+		Level        log.Level `yaml:"level"`
+		ReportCaller bool      `yaml:"reportCaller"`
 	} `yaml:"log"`
 }
 

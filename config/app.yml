@@ -20,6 +20,9 @@ redis:
   host: 127.0.0.1:6379
   pass: pass
   db: 0
+eth:
+  node: https://mainnet.infura.io/v3/$apikey
+  privateKey: $privateKey
 log:
   path: /tmp/log/go-gin-app
   # 0-PanicLevel 1-FatalLevel 2-ErrorLevel 3-WarnLevel 4-InfoLevel 5-DebugLevel 6-TraceLevel

@@ -6,10 +6,10 @@ import (
 	"github.com/ethereum/go-ethereum/common"
 	"github.com/ethereum/go-ethereum/crypto"
 	"github.com/ethereum/go-ethereum/ethclient"
+	"github.com/ethereum/go-ethereum/rpc"
 	"github.com/huahuayu/go-gin-app/common/config"
 	"github.com/sirupsen/logrus"
 	"math/big"
-	"net/rpc"
 )
 
 var (
@@ -32,7 +32,7 @@ func Init() {
 	if EthClient, err = ethclient.DialContext(context.Background(), config.App.Eth.Node); err != nil {
 		logrus.Fatal("ethClient init: ", err)
 	}
-	if RpcClient, err = rpc.Dial("tcp", config.App.Eth.Node); err != nil {
+	if RpcClient, err = rpc.Dial(config.App.Eth.Node); err != nil {
 		logrus.Fatal("rpcClient init: ", err)
 	}
 	if NetworkId, err = EthClient.NetworkID(context.Background()); err != nil {

@@ -4,29 +4,23 @@ import (
 	"context"
 	"errors"
 	"github.com/go-redis/redis/v8"
-	"github.com/huahuayu/go-gin-app/common/config"
 	"time"
 )
 
-var (
-	Client *redis.Client
-)
+type Client redis.Client
 
-func Init() {
-	Client = redis.NewClient(&redis.Options{
-		Addr:     config.App.Redis.Host,
-		Password: config.App.Redis.Pass,
-		DB:       config.App.Redis.Db,
+func NewClient(address string, password string, db int) (Client, error) {
+	client := redis.NewClient(&redis.Options{
+		Addr:     address,
+		Password: password,
+		DB:       db,
 	})
-
-	_, err := Client.Ping(context.TODO()).Result()
-	if err != nil {
-		panic(err)
-	}
+	_, err := client.Ping(context.Background()).Result()
+	return Client(*client), err
 }
 
-func ObtainLock(key string, expiration time.Duration) error {
-	val, err := Client.SetNX(context.TODO(), key, 1, expiration).Result()
+func (client *Client) ObtainLock(key string, expiration time.Duration) error {
+	val, err := client.SetNX(context.Background(), key, 1, expiration).Result()
 	if err != nil {
 	}
 	if !val {
@@ -35,6 +29,35 @@ func ObtainLock(key string, expiration time.Duration) error {
 	return nil
 }
 
-func ReleaseLock(key string) {
-	Client.Del(context.TODO(), key)
+func (client *Client) ReleaseLock(key string) {
+	client.Del(context.Background(), key)
+}
+
+func (client *Client) Publish(ctx context.Context, channel string, message interface{}) error {
+	c := redis.Client(*client)
+	err := c.Publish(ctx, channel, message).Err()
+	if err != nil {
+		return err
+	}
+	return nil
+}
+
+func (client *Client) Subscribe(ctx context.Context, channels ...string) *redis.PubSub {
+	c := redis.Client(*client)
+	return c.Subscribe(ctx, channels...)
+}
+
+func (client *Client) Set(ctx context.Context, key string, value interface{}, expiration time.Duration) {
+	c := redis.Client(*client)
+	c.Set(ctx, key, value, expiration)
+}
+
+func (client *Client) Get(ctx context.Context, key string) *redis.StringCmd {
+	c := redis.Client(*client)
+	return c.Get(ctx, key)
+}
+
+func (client *Client) Del(ctx context.Context, key string) {
+	c := redis.Client(*client)
+	c.Del(ctx, key)
 }

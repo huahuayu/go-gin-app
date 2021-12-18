@@ -19,8 +19,8 @@ import (
 func Register(c *gin.Context, req *view.RegisterReq) {
 	// set a lock to prevent concurrent insert
 	lock := fmt.Sprintf(redis.KEY_INSERT_USER_LOCK, req.Email, req.Username)
-	err := redis.ObtainLock(lock, 1*time.Second)
-	defer redis.ReleaseLock(lock)
+	err := redis.Cli.ObtainLock(lock, 1*time.Second)
+	defer redis.Cli.ReleaseLock(lock)
 	if err != nil {
 		view.ResponseErr(c, ErrTryLater, "")
 		return

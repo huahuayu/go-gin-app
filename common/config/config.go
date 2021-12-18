@@ -35,9 +35,9 @@ type Configuration struct {
 		Db   int    `yaml:"db"`
 	} `yaml:"redis"`
 	Log struct {
-		Path  string    `yaml:"path"`
-		Level log.Level `yaml:"level"`
-		ReportCaller bool `yaml:"reportCaller"`
+		Path         string    `yaml:"path"`
+		Level        log.Level `yaml:"level"`
+		ReportCaller bool      `yaml:"reportCaller"`
 	} `yaml:"log"`
 }
 

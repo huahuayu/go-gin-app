@@ -127,6 +127,6 @@ func getEnv(envFlag string, v *viper.Viper) string {
 func unmarshalConfig(v *viper.Viper) {
 	err := v.Unmarshal(&App)
 	if err != nil {
-		log.Fatal("wrong config file format")
+		log.Fatal(err)
 	}
 }

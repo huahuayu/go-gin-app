@@ -6,10 +6,10 @@ import (
 	"testing"
 )
 
-func TestSubscribeA(t *testing.T) {
+func TestClient_SubscribeA(t *testing.T) {
 	config.Init("", "dev")
 	Init()
-	pubSub := Subscribe(context.Background(), "Ethereum:NewTxns|Uniswap|swapExactETHForTokens")
+	pubSub := Cli.Subscribe(context.Background(), "ETH:NewTxns|All")
 	_, err := pubSub.Receive(context.Background())
 	if err != nil {
 		panic(err)
@@ -19,10 +19,10 @@ func TestSubscribeA(t *testing.T) {
 	}
 }
 
-func TestSubscribeB(t *testing.T) {
+func TestClient_SubscribeB(t *testing.T) {
 	config.Init("", "dev")
 	Init()
-	pubSub := Subscribe(context.Background(), "Ethereum:NewTxns|Uniswap|swapExactTokensForETH")
+	pubSub := Cli.Subscribe(context.Background(), "BSC:NewTxns|All")
 	_, err := pubSub.Receive(context.Background())
 	if err != nil {
 		panic(err)

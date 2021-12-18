@@ -12,12 +12,12 @@ import (
 func Set(sid string, user *model.TUser) {
 	key := fmt.Sprintf(redis.KEY_USER_SESSION, sid)
 	data, _ := json.Marshal(user)
-	redis.Client.Set(context.Background(), key, data, global.SessionExpiredTime)
+	redis.Cli.Set(context.Background(), key, data, global.SessionExpiredTime)
 }
 
 func Get(sid string) *model.TUser {
 	key := fmt.Sprintf(redis.KEY_USER_SESSION, sid)
-	res := redis.Client.Get(context.Background(), key)
+	res := redis.Cli.Get(context.Background(), key)
 	user := &model.TUser{}
 	bytes, _ := res.Bytes()
 	err := json.Unmarshal(bytes, user)
@@ -29,5 +29,5 @@ func Get(sid string) *model.TUser {
 
 func Del(sid string) {
 	key := fmt.Sprintf(redis.KEY_USER_SESSION, sid)
-	redis.Client.Del(context.Background(), key)
+	redis.Cli.Del(context.Background(), key)
 }

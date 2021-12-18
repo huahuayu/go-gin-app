@@ -17,7 +17,7 @@ var (
 	PublicKeyECDSA *ecdsa.PublicKey
 	EthClient      *ethclient.Client
 	RpcClient      *rpc.Client
-	NetworkId      *big.Int
+	ChainId        *big.Int
 	FromAddress    common.Address
 	Nonce          uint64
 )
@@ -35,8 +35,8 @@ func Init() {
 	if RpcClient, err = rpc.Dial(config.App.Eth.Node); err != nil {
 		logrus.Fatal("rpcClient init: ", err)
 	}
-	if NetworkId, err = EthClient.NetworkID(context.Background()); err != nil {
-		logrus.Fatal("get networkId error: ", err)
+	if ChainId, err = EthClient.ChainID(context.Background()); err != nil {
+		logrus.Fatal("get chainId error: ", err)
 	}
 	FromAddress = crypto.PubkeyToAddress(*PublicKeyECDSA)
 	if Nonce, err = EthClient.PendingNonceAt(context.Background(), FromAddress); err != nil {

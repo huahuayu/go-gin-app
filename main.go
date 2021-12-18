@@ -7,7 +7,6 @@ import (
 	"github.com/huahuayu/go-gin-app/common/config"
 	"github.com/huahuayu/go-gin-app/common/db"
 	"github.com/huahuayu/go-gin-app/common/redis"
-	"github.com/huahuayu/go-gin-app/eth"
 	"github.com/huahuayu/go-gin-app/router"
 	log "github.com/sirupsen/logrus"
 	"io"
@@ -58,7 +57,7 @@ func main() {
 	initLog()
 	db.Init()
 	redis.Init()
-	eth.Init()
+	//eth.Init()
 
 	gin.SetMode(config.App.Server.GinMode)
 	r := gin.Default()

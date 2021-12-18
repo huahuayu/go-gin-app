@@ -10,7 +10,7 @@ import (
 )
 
 const (
-	dsn       = "%s:%s@tcp(%s:%s)/%s?%s"
+	dsn       = "%s:%s@tcp(%s:%d)/%s?%s"
 	dsnParams = "charset=utf8mb4&parseTime=true&timeout=5s"
 )
 

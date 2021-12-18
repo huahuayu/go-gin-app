@@ -23,7 +23,7 @@ type Configuration struct {
 		User       string `yaml:"user"`
 		Pass       string `yaml:"pass"`
 		Host       string `yaml:"host"`
-		Port       string `yaml:"port"`
+		Port       int    `yaml:"port"`
 		Name       string `yaml:"name"`
 		MaxConnect int    `yaml:"maxConnect"`
 		MaxIdle    int    `yaml:"maxIdle"`
